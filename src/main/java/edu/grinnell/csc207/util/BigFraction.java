@@ -143,13 +143,6 @@ public class BigFraction {
 
     this.denom = BigInteger.valueOf(denominator).abs();
 
-    if (denominator < 0) {
-      this.num = this.num.multiply(BigInteger.valueOf(-1));
-    } // if
-    /////////////////////////////////////////////////////////////////// MIGHT NOT NEEEEEDDDDD IF IT
-    /////////////////////////////////////////////////////////////////// WORKS FOR THE
-    /////////////////////////////////////////////////////////////////// STRING!!!!!!!!!!!!!!!!!!!!!!!!!
-
     this.simplify();
 
   } // BigFraction(int, int)
