@@ -184,8 +184,8 @@ public class BigFraction {
         this.num = this.num.multiply(BigInteger.valueOf(-1));
       } // if
 
-      
-    } //if
+
+    } // if
     this.simplify();
   } // BigFraction
 
