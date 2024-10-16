@@ -18,7 +18,10 @@ import edu.grinnell.csc207.util.BigFraction;
  * @author Sheilla Muligande
  */
 public class QuickCalculator {
-
+  /**
+   * an interactive calculator.
+   * @param args the big fractions that will be calculated.
+   */
   public static void main(String[] args) {
     BFCalculator newCalculator = new BFCalculator();
     BFRegisterSet newRegister = new BFRegisterSet();
@@ -40,14 +43,12 @@ public class QuickCalculator {
             newRegister.store(register, newCalculator.get());
           } else {
             System.err.println("ERROR");
-          }
+          } // if
           continue;
         } else if (inputPiece.equals("+") || inputPiece.equals("-") || inputPiece.equals("/")
             || inputPiece.equals("*")) {
           operator = inputPiece;
-        } // if
-
-        else if (Character.isLetter(inputPiece.charAt(0))) {
+        } else if (Character.isLetter(inputPiece.charAt(0))) {
           BigFraction val = newRegister.get(inputPiece.charAt(0));
           // if (Character.isLetter(inputPiece.charAt(0))) {
           // val = newRegister.get(inputPiece.charAt(0));
@@ -63,11 +64,9 @@ public class QuickCalculator {
             result = result.subtract(val);
           } else if (operator.equals("/")) {
             result = result.divide(val);
-          }
+          } // if
 
-        }
-
-        else {
+        } else {
           BigFraction val = new BigFraction(inputPiece);
           if (operator == null) {
             result = val;
@@ -79,15 +78,14 @@ public class QuickCalculator {
             result = result.subtract(val);
           } else if (operator.equals("/")) {
             result = result.divide(val);
-          }
-        }
-      }
+          } // if
+        } // if
+      } // for
 
       newCalculator.add(result);
       System.out.printf("%s", result);
 
-    }
+    } // for
 
-
-  }
+  } // main()
 } // QuickCalculator

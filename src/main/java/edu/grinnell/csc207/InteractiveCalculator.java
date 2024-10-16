@@ -5,10 +5,6 @@ import java.util.Scanner;
 import edu.grinnell.csc207.util.BFCalculator;
 import edu.grinnell.csc207.util.BFRegisterSet;
 import edu.grinnell.csc207.util.BigFraction;
-
-// import edu.grinnell.csc207.util.CipherUtils;
-
-
 /**
  * An implementation of an interactive Calculator.
  *
@@ -16,10 +12,13 @@ import edu.grinnell.csc207.util.BigFraction;
  */
 
 public class InteractiveCalculator {
+  /**
+   * an interactive calculator.
+   * @param args the big fractions that will be calculated.
+   */
   public static void main(String[] args) {
     PrintWriter pen = new PrintWriter(System.out, true);
     Scanner eyes = new Scanner(System.in);
-
     BFCalculator newCalculator = new BFCalculator();
     BFRegisterSet newRegister = new BFRegisterSet();
 
@@ -47,13 +46,11 @@ public class InteractiveCalculator {
 
         if (register != 0) {
           newRegister.store(register, newCalculator.get());
-        }
-
-        else {
+        } else {
           pen.printf("Error: invalid register.");
-        }
+        } // if
         continue;
-      }
+      } //if
 
       splitInput = input.split(" ");
       BigFraction result = new BigFraction(0, 1);
@@ -63,21 +60,16 @@ public class InteractiveCalculator {
         if (inputPiece.equals("+") || inputPiece.equals("-") || inputPiece.equals("/")
             || inputPiece.equals("*")) {
           function = inputPiece;
-        } // if
-
-        else {
+        } else {
           BigFraction val;
           if (Character.isLetter(inputPiece.charAt(0))) {
             val = newRegister.get(inputPiece.charAt(0));
-          } // if
-
-          else {
+          } else {
             val = new BigFraction(inputPiece);
-          }
+          } //if
           if (function == null) {
             result = val;
-          } // if
-          else if (function.equals("+")) {
+          } else if (function.equals("+")) {
             result = result.add(val);
           } else if (function.equals("*")) {
             result = result.multiply(val);
@@ -85,18 +77,18 @@ public class InteractiveCalculator {
             result = result.subtract(val);
           } else if (function.equals("/")) {
             result = result.divide(val);
-          }
+          } // if
 
 
 
-        }
+        } // if
 
-      }
+      } // for
 
       newCalculator.add(result);
-      pen.printf("%s", result);
+      pen.printf("%s\n", result);
 
-    }
+    } // for
 
 
 

@@ -4,15 +4,9 @@ import java.math.BigInteger;
 
 
 /**
- * 
  * A simple implementation of arbitrary-precision Fractions.
- *
- * 
- * 
  * @author Samuel A. Rebelsky
- * 
- * @author YOUR NAME HERE
- * 
+ * @author YSheilla Muligande
  */
 
 public class BigFraction {
@@ -22,32 +16,15 @@ public class BigFraction {
   // | Design Decisions |
 
   // +------------------+
-
-
   /*
-   * 
-   * (1) Denominators are always positive. Therefore, negative fractions
-   * 
-   * are represented with a negative numerator. Similarly, if a fraction
-   * 
-   * has a negative numerator, it is negative.
-   *
-   * 
-   * 
-   * (2) Fractions are not necessarily stored in simplified form. To
-   * 
-   * obtain a fraction in simplified form, one must call the `simplify`
-   * 
-   * method.
-   * 
+   * (1) Denominators are always positive. Therefore, negative fractions are represented with a
+   * negative numerator. Similarly, if a fraction has a negative numerator, it is negative. (2).
+   * Fractions are not necessarily stored in simplified form. To obtain a fraction in simplified
+   * form, one must call the `simplify` method.
    */
 
 
-  // +-----------+---------------------------------------------------
-
-  // | Constants |
-
-  // +-----------+
+//constants
 
 
   /** The default numerator when creating fractions. */
@@ -59,12 +36,7 @@ public class BigFraction {
 
   private static final BigInteger DEFAULT_DENOMINATOR = BigInteger.valueOf(7);
 
-
-  // +--------+-------------------------------------------------------
-
-  // | Fields |
-
-  // +--------+
+//fields
 
 
   /** The numerator of the fraction. Can be positive, zero or negative. */
@@ -77,29 +49,13 @@ public class BigFraction {
   BigInteger denom;
 
 
-  // +--------------+-------------------------------------------------
-
-  // | Constructors |
-
-  // +--------------+
+//constructors
 
 
   /**
-   * 
    * Build a new fraction with numerator num and denominator denom.
-   *
-   *
-   * 
-   * 
-   * 
-   * @param numerator
-   * 
-   *        The numerator of the fraction.
-   * 
-   * @param denominator
-   * 
-   *        The denominator of the fraction.
-   * 
+   * @param numerator The numerator of the fraction.
+   * @param denominator The denominator of the fraction.
    */
 
   public BigFraction(BigInteger numerator, BigInteger denominator) {
@@ -118,23 +74,9 @@ public class BigFraction {
 
 
   /**
-   * 
-   * Build a new fraction with numerator num and denominator denom.
-   *
-   * 
-   * 
-   * Warning! Not yet stable.
-   *
-   * 
-   * 
-   * @param numerator
-   * 
-   *        The numerator of the fraction.
-   * 
-   * @param denominator
-   * 
-   *        The denominator of the fraction.
-   * 
+   * Build a new fraction with numerator num and denominator denom. Warning! Not yet stable.
+   * @param numerator numerator of the fraction.
+   * @param denominator The denominator of the fraction.
    */
 
   public BigFraction(int numerator, int denominator) {
@@ -149,19 +91,8 @@ public class BigFraction {
 
 
   /**
-   * 
    * Build a new fraction by parsing a string.
-   *
-   * 
-   * 
-   * Warning! Not yet implemented.
-   *
-   * 
-   * 
-   * @param str
-   * 
-   *        The fraction in string form
-   * 
+   * @param str fraction in string form
    */
 
   public BigFraction(String str) {
@@ -169,18 +100,18 @@ public class BigFraction {
     String[] fractionParts = str.split("/");
 
     if (fractionParts.length == 1) {
-      BigInteger StrNum = new BigInteger(fractionParts[0]);
-      this.num = StrNum;
+      BigInteger strNum = new BigInteger(fractionParts[0]);
+      this.num = strNum;
       this.denom = BigInteger.ONE;
     } else {
 
-      BigInteger StrNum = new BigInteger(fractionParts[0]);
-      BigInteger StrDenom = new BigInteger(fractionParts[1]);
+      BigInteger strNum = new BigInteger(fractionParts[0]);
+      BigInteger strDenom = new BigInteger(fractionParts[1]);
 
-      this.denom = StrDenom.abs();
-      this.num = StrNum;
+      this.denom = strDenom.abs();
+      this.num = strNum;
 
-      if (StrDenom.compareTo(BigInteger.ZERO) < 0) {
+      if (strDenom.compareTo(BigInteger.ZERO) < 0) {
         this.num = this.num.multiply(BigInteger.valueOf(-1));
       } // if
 
@@ -198,13 +129,8 @@ public class BigFraction {
 
 
   /**
-   * 
    * Express this fraction as a double.
-   *
-   * 
-   * 
    * @return the fraction approxiamted as a double.
-   * 
    */
 
   public double doubleValue() {
@@ -215,21 +141,10 @@ public class BigFraction {
 
 
   /**
-   * 
    * Add another faction to this fraction.
-   *
-   * 
-   * 
-   * @param addend
-   * 
-   *        The fraction to add.
-   *
-   * 
-   * 
+   * @param addend The fraction to add.
    * @return the result of the addition.
-   * 
    */
-
   public BigFraction add(BigFraction addend) {
 
     BigInteger resultNumerator;
@@ -259,7 +174,11 @@ public class BigFraction {
 
   } // add(BigFraction)
 
-
+  /**
+   * Add another fraction to this fraction.
+   * @param addend The fraction to multiply.
+   * @return the result of the addition.
+   */
   public BigFraction multiply(BigFraction addend) {
 
 
@@ -276,27 +195,13 @@ public class BigFraction {
     product.simplify();
     return product;
 
-  }
+  } //multiply()
 
-
-
-  public BigFraction fractional() {
-
-    BigInteger remainder = this.num.remainder(this.denom);
-
-    return new BigFraction(remainder, this.denom);
-
-  }
 
 
   /**
-   * 
    * Get the denominator of this fraction.
-   *
-   * 
-   * 
    * @return the denominator
-   * 
    */
 
   public BigInteger denominator() {
@@ -307,13 +212,8 @@ public class BigFraction {
 
 
   /**
-   * 
    * Get the numerator of this fraction.
-   *
-   * 
-   * 
    * @return the numerator
-   * 
    */
 
   public BigInteger numerator() {
@@ -323,19 +223,27 @@ public class BigFraction {
   } // numerator()
 
 
+  /**
+   * simplifies a fraction.
+   */
   public void simplify() {
-    BigInteger BigGCD = num.abs().gcd(denom.abs());
+    BigInteger bigGCD = num.abs().gcd(denom.abs());
 
-    this.num = this.num.divide(BigGCD);
-    this.denom = this.denom.divide(BigGCD);
+    this.num = this.num.divide(bigGCD);
+    this.denom = this.denom.divide(bigGCD);
 
     if (this.denom.compareTo(BigInteger.ZERO) < 0) {
       this.num = this.num.multiply(BigInteger.valueOf(-1));
       this.denom = this.denom.abs();
     } // if
 
-  }
+  } // simplify()
 
+  /**
+   * subtract a fraction from this fraction.
+   * @param frac the fraction to be subtracted.
+   * @return the difference.
+   */
   public BigFraction subtract(BigFraction frac) {
     BigInteger num1 = this.num.multiply(frac.denom);
     BigInteger num2 = frac.num.multiply(this.denom);
@@ -346,20 +254,14 @@ public class BigFraction {
     BigFraction difference = new BigFraction(resultNum, resultDenom);
     difference.simplify();
     return difference;
-  }
+  } // subtract()
 
 
   /**
-   * 
    * Convert this fraction to a string for ease of printing.
-   *
-   * 
-   * 
    * @return a string that represents the fraction.
-   * 
+   * @param frac the dividend
    */
-
-
   public BigFraction divide(BigFraction frac) {
     BigInteger resultNumerator = this.num.multiply(frac.denom);
 
@@ -370,12 +272,14 @@ public class BigFraction {
 
     return quotient;
 
-  }
+  } // divide()
 
+  /**
+   * Convert this fraction to a string for ease of printing.
+   * @return a string that represents the fraction.
+   */
   public String toString() {
-
     // Special case: It's zero
-
     if (this.num.equals(BigInteger.ZERO)) {
 
       return "0";
@@ -384,16 +288,11 @@ public class BigFraction {
 
     if (this.denom.equals(BigInteger.ONE)) {
       return this.num.toString();
-    }
-
+    } // if
     // Lump together the string represention of the numerator,
-
     // a slash, and the string representation of the denominator
-
     // return this.num.toString().concat("/").concat(this.denom.toString());
-
     return this.num + "/" + this.denom;
-
   } // toString()
 
 } // class BigFraction
