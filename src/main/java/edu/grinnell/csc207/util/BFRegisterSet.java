@@ -33,7 +33,7 @@ public class BFRegisterSet {
     public void store(char register, BigFraction val){
      int index = indexCalculator(register);
     
-     if (index > 0){
+     if (index < 0 || index >= 26){
        System.err.printf("Error: invalid register");
      } //if
     
@@ -44,7 +44,7 @@ public class BFRegisterSet {
     
     public BigFraction get(char register){
      int index = indexCalculator(register);
-     if (index > 0){
+     if(index < 0 || index >= 26){
        System.err.printf("Error: invalid register");
        return null;
      } //if
